@@ -90,6 +90,7 @@ def main():
                 quit()
 
         glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT)  # clear the frame
+        glClearColor(0.607, 0.278, 0.3, 1)  # set background color
         draw()  # calling the function with drawing logic
         pygame.display.flip()  # bring up the updated screen
 
