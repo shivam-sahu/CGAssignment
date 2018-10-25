@@ -12,9 +12,9 @@ from OpenGL.GLU import *
 # Variable Declaration
 height = 800
 width = 1000
-a = int(input(" What is value of a "))
-b = int(input(" What is value of b "))
-mappingHeight = a
+a = int(input("What is value of a "))
+b = int(input("What is value of b "))
+mappingHeight = max(a, b)
 xs = 10
 
 lengths = [(a, b)]
