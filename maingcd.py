@@ -89,6 +89,10 @@ def main():
                 pygame.quit()
                 quit()
 
+        glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT)  # clear the frame
+        draw()  # calling the function with drawing logic
+        pygame.display.flip()  # bring up the updated screen
+
         if(a != b):
             if(a > b):
                 a -= b
@@ -96,10 +100,6 @@ def main():
                 b -= a
             lengths += [(a, b)]
             print(lengths)
-
-        glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT)  # clear the frame
-        draw()  # calling the function with drawing logic
-        pygame.display.flip()  # bring up the updated screen
 
 
 #calling main()
