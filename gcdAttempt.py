@@ -32,14 +32,15 @@ def draw():
         #global declaration of a and b
         global a, b, xs
         
-        #  print(a, b)
-
+        # When a is equal to b , we have required H.C.F
+        print(a, b)
+        
         # drawLine function is called
         drawLine(300, 750, 300, 750-a)
         drawLine(500, 750, 500, 750-b)
         
         #Delay is in seconds
-        time.sleep(3)
+        time.sleep(10)
         
 #main function
 def main():
@@ -60,22 +61,15 @@ def main():
                 pygame.quit()
                 quit()
 
-        # Main Logic For EUCLID's 
+        # Main Logic For EUCLID's DIVISION LEMMA
         
         if (a != b):
                 if (a < b):
                         b -= a
                 else:
                         a -= b
-                # time.sleep(1)
+                time.sleep(1)
                 draw()
-        
-        if ( a == b):
-                print("GCD is ",a)
-                break
-                
-
-
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT) #clear the frame
         draw() #calling the function with drawing logic
@@ -83,3 +77,7 @@ def main():
 
 #calling main()
 main()
+
+
+
+
