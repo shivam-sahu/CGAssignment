@@ -12,14 +12,14 @@ from OpenGL.GLU import *
 # Variable Declaration
 height = 800
 width = 1000
-a = int(input("What is value of a "))
-b = int(input("What is value of b "))
+a = int(input("What is value of a: "))
+b = int(input("What is value of b: "))
 mappingHeight = max(a, b)
 xs = 10
 
 lengths = [(a, b)]
 
-#defing functions for basic shapes
+# defing functions for basic shapes
 def drawPixel(x, y):
     glBegin(GL_POINTS)
     glVertex2f(x, y)
@@ -32,6 +32,18 @@ def drawLine(a, b, c, d):
     glVertex2f(c, d)
     glEnd()
 
+def drawRect(a, b, c, d):
+    drawLine(a-10, b, c-10, d) # left line
+    drawLine(a+10, b, c+10, d) # right line
+    drawLine(a-10, d, c+10, d) # upper line
+    drawLine(a-20, b, c+20, b) # lower line
+
+def drawFilledRect(a, b, c, d):
+    drawLine(a-20, b, c+20, b) # lower line
+    d = int(d)
+    # print(type(b), type(d), b, d)
+    for x in range(d, b):
+        drawLine(a-10, x, c+10, x)
 
 def translate(value, leftMin, leftMax, rightMin, rightMax):
     # Figure out how 'wide' each range is
@@ -45,8 +57,7 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
     return rightMin + (valueScaled * rightSpan)
 
 
-#main drawing logic
-
+# main drawing logic
 def draw():
         #global declaration of a and b
         global a, b, xs
@@ -62,8 +73,8 @@ def draw():
             tempA = translate(lengths[x][0], 0, mappingHeight, 0, height - 40)
             tempB = translate(lengths[x][1], 0, mappingHeight, 0, height - 40)
 
-            drawLine(tempDist - 20, height - 20, tempDist - 20, height - tempA - 20)
-            drawLine(tempDist + 20, height - 20, tempDist + 20, height - tempB - 20)
+            drawFilledRect(tempDist - 20, height - 20, tempDist - 20, height - tempA - 20)
+            drawFilledRect(tempDist + 20, height - 20, tempDist + 20, height - tempB - 20)
 
         #Delay is in seconds
         time.sleep(1)
@@ -76,6 +87,8 @@ def main():
     display = (width, height)  # the pygame windows resolution
     pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
     gluOrtho2D(0, 1000, 800, 0)
+    glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT)  # clear the frame
+    glClearColor(0.607, 0.278, 0.3, 1)  # set background color
 
     global a, b
     global lengths
@@ -101,6 +114,11 @@ def main():
                 b -= a
             lengths += [(a, b)]
             print(lengths)
+        else:
+            print(f"The GCD is {lengths[len(lengths) - 1][0]}")
+            input("Press any key to exit!")
+            pygame.quit()
+            quit()
 
 
 #calling main()
